@@ -24,6 +24,12 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/**
+* Contrôleur REST pour la gestion des requêtes HTTP liées aux Rentals
+* Cette classe expose les points de terminaison pour les opérations Rentals
+* telles que la récupération, la création et la mise à jour
+*/
 @RestController
 public class RentalController {
     @Autowired
@@ -92,7 +98,7 @@ public class RentalController {
      * Ajoute une nouvelle location en fonction des données de demande fournies.
      * @param token Le jeton d’authentification obtenu à partir de l’en-tête de la demande.
      * @param rentalDto
-     * @return
+     * @return ResponseEntity<Object> 
      * @throws IOException
      */
     
@@ -138,19 +144,13 @@ public class RentalController {
     @ApiOperation(value = "Update rental",  produces = "application/json",notes ="Update rental avec les parameters(name, surface, price, picture and description) and owner_id from token")
     @PutMapping("/api/rentals/{id}")
     public ResponseEntity<GenericMessageDto> updateRentalById(@PathVariable("id") Long id, @RequestHeader("Authorization") String token, @Valid @ModelAttribute RentalDto rentalDto) throws IOException {
-       
+       System.out.println("diengsalla");
         String email = tokenService.getEmailFromToken(token);
         Rental rental = rentalService.updateRental(id, userService.findUserByEmail(email).getId(), convertToEntity(rentalDto)); //Update rental in database
         if(rental != null) return ResponseEntity.ok(new GenericMessageDto("Rental updated !"));
         else throw new InvalidUserException("error");
     }
     
-    
-    /**
-     * 
-     * @param rentalDto
-     * @return
-     */
 
     private Rental convertToEntity(RentalDto rentalDto) {
         return modelMapper.map(rentalDto, Rental.class);

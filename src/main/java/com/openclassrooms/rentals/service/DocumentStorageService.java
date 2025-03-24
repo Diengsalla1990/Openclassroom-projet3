@@ -32,11 +32,7 @@ public class DocumentStorageService {
     	this.fileconv = this.fileStorageLocation.toPath();
     }
     
-    public void Storage() {
-    	
-    }
-
-    
+   
     /**
      * 
      * @param file
@@ -45,13 +41,8 @@ public class DocumentStorageService {
      */
     
     public String storeFile(MultipartFile file) throws IOException {
-        // Normalize file name
     	
         String originalFileName = StringUtils.cleanPath(file.getOriginalFilename());
-        
-        
-       // File originalFileName = file.getOriginalFilename();
-        // Copy file to the target location (Replacing existing file with the same name)
         Path  targetLocation = this.fileconv.resolve(originalFileName);
         Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 

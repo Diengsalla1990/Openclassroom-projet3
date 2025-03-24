@@ -1,15 +1,13 @@
 package com.openclassrooms.rentals.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
 
 
 
-@Getter
-@Setter
+@Data
 @Entity 
 @Table(name = "users")
 public class User {

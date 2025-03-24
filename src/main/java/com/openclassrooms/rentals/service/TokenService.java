@@ -16,6 +16,12 @@ public class TokenService {
         this.decoder = jwtDecoder;
     }
 
+    
+    /**
+     * Generation du token
+     * @param authenticationEmail
+     * @return token encoder avec email
+     */
 
     public String generateToken(String authenticationEmail){
         Instant now = Instant.now();
@@ -29,9 +35,14 @@ public class TokenService {
         return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 
-    //Extract email from token
+   
+    /**
+     * l'extraction de l'email du token
+     * @param token
+     * @return
+     */
     public String getEmailFromToken(String token){
-        token = deleteBearerFromToken(token); //Delete "Bearer" from token
+        token = deleteBearerFromToken(token); 
         if (token != null) {
             Jwt claims = this.decoder.decode(token);
             return claims.getSubject();
@@ -40,7 +51,12 @@ public class TokenService {
         }
     }
 
-    //Delete "Bearer" from token
+    
+    /**
+     * suppression de "Bearer" du token
+     * @param token
+     * @return
+     */
     public String deleteBearerFromToken(String token) {
         if (token != null) {
             if(token.startsWith("Bearer ")) return token.substring(7);

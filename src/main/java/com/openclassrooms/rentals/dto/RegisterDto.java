@@ -2,13 +2,10 @@ package com.openclassrooms.rentals.dto;
 
 import javax.validation.constraints.NotBlank;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 
-
-@Getter
-@Setter
+@Data
 public class RegisterDto {
     @NotBlank(message = "name is mandatory")
     private String name;

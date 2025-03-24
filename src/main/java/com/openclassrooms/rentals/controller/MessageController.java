@@ -21,6 +21,12 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
+/**
+* Contrôleur REST pour la gestion des requêtes HTTP liées aux Message
+* Cette classe expose lepoints de terminaison pour l'opérations Message
+* la création de Message
+*/
+
 @RestController
 public class MessageController {
     @Autowired
@@ -55,11 +61,6 @@ public class MessageController {
     	else throw new InvalidUserException("error"); 
     }
     
-     /**
-      * 
-      * @param messageDto
-      * @return
-      */
 
     private Message convertToEntity(MessageDto messageDto) {
         return modelMapper.map(messageDto, Message.class);

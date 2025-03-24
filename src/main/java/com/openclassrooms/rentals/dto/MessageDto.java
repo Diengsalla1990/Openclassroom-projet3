@@ -3,11 +3,9 @@ package com.openclassrooms.rentals.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class MessageDto {
     @NotNull(message = "rental_id is mandatory")
     private Long rental_id;

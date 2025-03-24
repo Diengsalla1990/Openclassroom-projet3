@@ -10,25 +10,48 @@ import com.openclassrooms.rentals.repository.UserRepository;
 
 import lombok.Data;
 
+
+/**
+ * Couche de service pour la gestion de la logique métier liée aux utilisateurs.
+ * Cette classe fournit des méthodes de gestion des utilisateurs,
+ * telles que la création, la récupération et la suppression.
+ */
 @Data
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-
-    //User creation
+    
+    /**
+     * Creation d'un Utilisateur
+     * @param user
+     * @return enregistre entité user
+     */
+   
     public User createUser(User user) {
-        user.setCreated_at(new Date()); //Set today
-        return userRepository.save(user); //Save user in database
+        user.setCreated_at(new Date()); 
+        return userRepository.save(user);
     }
+    
+    /**
+     * Rechercher un utilisateur avec l'e-mail comme paramètre
+     * @param email
+     * @return recherche l'email
+     */
 
-    //Find user with email as parameter
+  
     public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email); //Find user by its email in database
+        return userRepository.findByEmail(email); 
     }
+    
+    /**
+     * Vérification si l'email existe
+     * @param email
+     * @return
+     */
 
     public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email); //Check id user exists in database
+        return userRepository.existsByEmail(email); 
     }
 
 }

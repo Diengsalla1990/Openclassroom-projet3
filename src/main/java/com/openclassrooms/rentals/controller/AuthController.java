@@ -13,6 +13,7 @@ import com.openclassrooms.rentals.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
 import io.swagger.v3.oas.annotations.Operation;
 
 import org.modelmapper.ModelMapper;
@@ -22,6 +23,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
+
+/**
+* Contrôleur REST pour la gestion des requêtes HTTP liées aux Utilisateur
+* Cette classe expose les points de terminaison pour les opérations Rentals
+* telles que la récupération, la création et la récupération grace a son ID
+*/
 @RestController
 public class AuthController {
     @Autowired 
@@ -111,8 +118,7 @@ public class AuthController {
             @ApiResponse(code = 500, message = "Une erreur s'est produite")
     })
     
-    
-    @Operation(summary = "Obtenir des informations sur l'utilisateur", description = "return name, email of user connected")
+    @ApiOperation(value = "Obtenir des informations sur l'utilisateur", notes= "Retourne tout les rentals", authorizations = {@Authorization(value = "jwtToken")})
     @GetMapping("/api/auth/me") 
     public UserDto getUser( @RequestHeader("Authorization") String token) {
     	 

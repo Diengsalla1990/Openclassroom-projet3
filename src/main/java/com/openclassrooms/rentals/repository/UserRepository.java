@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 import com.openclassrooms.rentals.model.User;
 
 /**
- * Classe en tant que Bean
- * Son rôle est de communiquer avec la BDD
+ * Interface de référentiel pour la gestion des entités {@link User} dans la base de données.
+ * Étend JpaRepository pour fournir des opérations CRUD et des requêtes personnalisées.
  */
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
