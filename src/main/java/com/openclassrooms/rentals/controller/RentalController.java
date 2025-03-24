@@ -62,7 +62,7 @@ public class RentalController {
             @ApiResponse(code = 404, message = "pas trouvé"),
             @ApiResponse(code = 500, message = "Une erreur s'est produite")
     })
-    @ApiOperation(value = "Get all rentals", notes= "Return all rentals", authorizations = {@Authorization(value = "jwtToken")})
+    @ApiOperation(value = "Obtenir la list des Rentals", notes= "Retourne tout les rentals", authorizations = {@Authorization(value = "jwtToken")})
     @GetMapping("/api/rentals")
     public RentalsListDto getAllRentals() {
         RentalsListDto rentalsListDto = new RentalsListDto();
@@ -87,7 +87,7 @@ public class RentalController {
             @ApiResponse(code = 500, message = "Une erreur s'est produite")
     })
 
-    @ApiOperation(value = "Get rental by Id", notes ="Return rental by Id", authorizations = {@Authorization(value = "jwtToken")})
+    @ApiOperation(value = "Obtenir le rental par ID", notes ="Retourne rental par Id", authorizations = {@Authorization(value = "jwtToken")})
     @GetMapping("/api/rentals/{id}")
     public Rental getRentalById(@PathVariable("id") Long id) {
 
@@ -110,7 +110,7 @@ public class RentalController {
             @ApiResponse(code = 500, message = "Une erreur s'est produite")
     })
     
-    @ApiOperation(value = "Create rental", notes ="Return rental by Id", produces = "application/json")
+    @ApiOperation(value = "Creation d'un Rental", notes ="", produces = "application/json")
     @PostMapping(path = "/api/rentals", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<GenericMessageDto> createRental(@RequestHeader("Authorization") String token, @Valid @ModelAttribute RentalDto rentalDto) throws IOException {
         String pathAndFileName = "";
@@ -141,7 +141,7 @@ public class RentalController {
             @ApiResponse(code = 500, message = "Une erreur s'est produite")
     })
     
-    @ApiOperation(value = "Update rental",  produces = "application/json",notes ="Update rental avec les parameters(name, surface, price, picture and description) and owner_id from token")
+    @ApiOperation(value = "Mise à jour de Rental",  produces = "application/json",notes ="Update rental avec les parameters(name, surface, price, picture and description) and owner_id from token")
     @PutMapping("/api/rentals/{id}")
     public ResponseEntity<GenericMessageDto> updateRentalById(@PathVariable("id") Long id, @RequestHeader("Authorization") String token, @Valid @ModelAttribute RentalDto rentalDto) throws IOException {
        System.out.println("diengsalla");
