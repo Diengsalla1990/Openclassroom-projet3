@@ -144,7 +144,6 @@ public class RentalController {
     @ApiOperation(value = "Mise à jour de Rental",  produces = "application/json",notes ="Update rental avec les parameters(name, surface, price, picture and description) and owner_id from token")
     @PutMapping("/api/rentals/{id}")
     public ResponseEntity<GenericMessageDto> updateRentalById(@PathVariable("id") Long id, @RequestHeader("Authorization") String token, @Valid @ModelAttribute RentalDto rentalDto) throws IOException {
-       System.out.println("diengsalla");
         String email = tokenService.getEmailFromToken(token);
         Rental rental = rentalService.updateRental(id, userService.findUserByEmail(email).getId(), convertToEntity(rentalDto)); //Update rental in database
         if(rental != null) return ResponseEntity.ok(new GenericMessageDto("Rental updated !"));
